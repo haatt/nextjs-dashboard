@@ -6,6 +6,9 @@ const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
 async function seedUsers() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  // await sql`DROP TABLE IF EXISTS "users"`;
+
   await sql`
     CREATE TABLE IF NOT EXISTS users (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -31,6 +34,8 @@ async function seedUsers() {
 
 async function seedInvoices() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
+
+  // await sql`DROP TABLE IF EXISTS "invoices"`;
 
   await sql`
     CREATE TABLE IF NOT EXISTS invoices (
@@ -58,6 +63,8 @@ async function seedInvoices() {
 async function seedCustomers() {
   await sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
 
+  // await sql`DROP TABLE IF EXISTS "customers"`;
+
   await sql`
     CREATE TABLE IF NOT EXISTS customers (
       id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
@@ -81,6 +88,9 @@ async function seedCustomers() {
 }
 
 async function seedRevenue() {
+
+  // await sql`DROP TABLE IF EXISTS "revenue"`;
+
   await sql`
     CREATE TABLE IF NOT EXISTS revenue (
       month VARCHAR(4) NOT NULL UNIQUE,
